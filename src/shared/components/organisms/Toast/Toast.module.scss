@@ -1,0 +1,26 @@
+@use '../../../../styles/abstracts/variables' as v;
+
+.toast {
+  position: fixed;
+  bottom: v.space(32);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: v.space(16) v.space(24);
+  border-radius: v.$radius-md;
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-medium;
+  box-shadow: v.$shadow-md;
+  z-index: 1100;
+  color: v.$color-white;
+  width: calc(100% - v.space(48));
+  max-width: 400px;
+  text-align: center;
+}
+
+.success {
+  background-color: v.$color-green-600;
+}
+
+.error {
+  background-color: v.$color-error;
+}

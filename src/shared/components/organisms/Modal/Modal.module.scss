@@ -1,0 +1,53 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(v.$color-black, 0.4);
+  z-index: 1000;
+  @include m.flex-center;
+  padding: v.space(24);
+}
+
+.card {
+  width: 100%;
+  max-width: 25rem;
+  padding: v.space(40);
+  background-color: v.$color-background;
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-md;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(16);
+    @include m.respond-to(tablet) {
+    max-width: 50rem;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: v.$font-size-xl;
+  font-weight: v.$font-weight-medium;
+  color: v.$color-pink-900;
+  line-height: 1.5;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 16rem;
+  object-fit: contain;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-regular;
+  color: v.$color-text-muted;
+  line-height: 1.5;
+}
+
+.button {
+  margin-top: v.space(8);
+}

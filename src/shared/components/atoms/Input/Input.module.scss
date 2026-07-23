@@ -1,0 +1,94 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+}
+
+.label {
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-regular;
+  color: v.$color-text;
+}
+
+.required {
+  color: v.$color-primary;
+}
+
+.wrapper {
+  @include m.flex-center;
+  gap: v.space(8);
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: 0 v.space(16);
+  transition: border-color 0.15s ease;
+
+  &:focus-within {
+    border-color: v.$color-primary;
+  }
+}
+
+.wrapperError {
+  border-color: v.$color-error;
+
+  &:focus-within {
+    border-color: v.$color-error;
+  }
+}
+
+.leadingIcon,
+.toggleButton,
+.clearButton,
+.errorIcon {
+  @include m.flex-center;
+  flex-shrink: 0;
+  color: v.$color-text-muted;
+}
+
+.toggleButton,
+.clearButton {
+  @include m.button-reset;
+}
+
+.clearButton {
+  padding: v.space(4);
+
+  &:hover {
+    color: v.$color-text;
+  }
+}
+
+.errorIcon {
+  color: v.$color-error;
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: v.space(16) 0;
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+
+  &::placeholder {
+    color: v.$color-neutral-400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.helperText {
+  font-size: v.$font-size-xs;
+  color: v.$color-text-muted;
+}
+
+.errorText {
+  font-size: v.$font-size-xs;
+  color: v.$color-error;
+}

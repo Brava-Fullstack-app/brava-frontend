@@ -1,0 +1,82 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.header {
+  @include m.flex-between;
+  height: 59px;
+  padding: v.space(36) v.space(24);
+  background-color: v.$color-pink-50;
+  box-shadow: v.$shadow-sm;
+
+    @include m.respond-to(tablet) {
+    padding: v.space(36) v.space(64);
+  }
+
+   @include m.respond-to(desktop) {
+    padding: v.space(36) v.space(64);
+    height: 64px;
+  }
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+}
+
+.rightGroup {
+  @include m.flex-center;
+  gap: v.space(48);
+}
+
+.iconButton {
+  @include m.button-reset;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(2);
+  color: v.$color-neutral-600;
+  position: relative;
+
+  :global(.bi-house),
+  :global(.bi-house-fill) {
+    font-size: 24px;
+    transition: opacity 0.15s ease;
+  }
+
+  :global(.bi-house-fill) {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &:hover {
+    color: v.$color-pink-500;
+
+    :global(.bi-house) {
+      opacity: 0;
+    }
+
+    :global(.bi-house-fill) {
+      opacity: 1;
+    }
+  }
+}
+
+.profileButton {
+  @include m.button-reset;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(2);
+  color: v.$color-neutral-600;
+
+  &:hover {
+    color: v.$color-pink-500;
+  }
+}
+
+.profileLabel {
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+}
+
+.profileButton i {
+  font-size: 24px;
+}
