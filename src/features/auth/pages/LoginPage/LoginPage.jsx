@@ -9,7 +9,7 @@ function LoginPage() {
       <Header />
 
       <div className={styles.content}>
-        <h1 className={styles.title}>Bienvenida de nuevo</h1>
+        <h1 className={styles.title}>¡Bienvenid@ de nuevo!</h1>
         <p className={styles.subtitle}>
           Inicia sesión y consulta tus registros de medicamentos y la información personalizada.
         </p>
