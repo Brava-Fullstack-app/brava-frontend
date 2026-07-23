@@ -4,11 +4,10 @@ import Button from '../../../../shared/components/atoms/Button/Button';
 import { useAuth } from '../../hooks/useAuth';
 import styles from './LoginForm.module.scss';
 
-function LoginForm({ onSuccess }) {
+function LoginForm({ onSuccess, onError }) {
   const { login, loading } = useAuth();
 
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
 
   function handleChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -16,12 +15,22 @@ function LoginForm({ onSuccess }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setError('');
+
+    if (!formData.email) {
+      onError('Escribe el correo electrónico');
+      return;
+    }
+
+    if (!formData.password) {
+      onError('Escribe la contraseña');
+      return;
+    }
+
     try {
       await login(formData);
       onSuccess();
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al iniciar sesión');
+      onError(err.response?.data?.message || 'Correo o contraseña incorrectos');
     }
   }
 
@@ -51,7 +60,6 @@ function LoginForm({ onSuccess }) {
         placeholder="1234Brava"
         value={formData.password}
         onChange={handleChange}
-        error={error}
         clearable
         onClear={() => setFormData((prev) => ({ ...prev, password: '' }))}
       />

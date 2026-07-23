@@ -7,16 +7,25 @@ import styles from './LoginPage.module.scss';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [showToast, setShowToast] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [errorToast, setErrorToast] = useState({ message: '', type: 'error' });
 
   const handleLoginSuccess = useCallback(() => {
-    setShowToast(true);
+    setShowSuccessToast(true);
   }, []);
 
-  const handleToastClose = useCallback(() => {
-    setShowToast(false);
+  const handleLoginError = useCallback((message) => {
+    setErrorToast({ message, type: 'error' });
+  }, []);
+
+  const handleSuccessClose = useCallback(() => {
+    setShowSuccessToast(false);
     navigate('/calendar');
   }, [navigate]);
+
+  const handleErrorClose = useCallback(() => {
+    setErrorToast({ message: '', type: 'error' });
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -28,7 +37,7 @@ function LoginPage() {
           Inicia sesión y consulta tus registros de medicamentos y la información personalizada.
         </p>
 
-        <LoginForm onSuccess={handleLoginSuccess} />
+        <LoginForm onSuccess={handleLoginSuccess} onError={handleLoginError} />
 
         <p className={styles.link}>
           ¿No tienes cuenta?{' '}
@@ -36,11 +45,20 @@ function LoginPage() {
         </p>
       </div>
 
-      {showToast && (
+      {showSuccessToast && (
         <Toast
           message="Sesión iniciada correctamente"
           type="success"
-          onClose={handleToastClose}
+          onClose={handleSuccessClose}
+          duration={3000}
+        />
+      )}
+
+      {errorToast.message && (
+        <Toast
+          message={errorToast.message}
+          type={errorToast.type}
+          onClose={handleErrorClose}
           duration={3000}
         />
       )}

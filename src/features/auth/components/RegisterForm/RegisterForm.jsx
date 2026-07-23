@@ -4,7 +4,7 @@ import Button from '../../../../shared/components/atoms/Button/Button';
 import { useAuth } from '../../hooks/useAuth';
 import styles from './RegisterForm.module.scss';
 
-function RegisterForm({ onSuccess }) {
+function RegisterForm({ onSuccess, onError }) {
   const { register, loading } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -12,7 +12,6 @@ function RegisterForm({ onSuccess }) {
     email: '',
     password: '',
   });
-  const [error, setError] = useState('');
 
   function handleChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,12 +19,22 @@ function RegisterForm({ onSuccess }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setError('');
+
+    if (!formData.name || !formData.email || !formData.password) {
+      onError('Complete todos los campos');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      onError('La contraseña debe tener mínimo 6 caracteres');
+      return;
+    }
+
     try {
       await register(formData);
       onSuccess();
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al registrarse');
+      onError(err.response?.data?.message || 'Error al registrarse');
     }
   }
 
@@ -69,7 +78,6 @@ function RegisterForm({ onSuccess }) {
         placeholder="1234Brava"
         value={formData.password}
         onChange={handleChange}
-        error={error}
         clearable
         onClear={() => setFormData((prev) => ({ ...prev, password: '' }))}
       />

@@ -12,6 +12,9 @@
   box-shadow: v.$shadow-md;
   z-index: 1100;
   color: v.$color-white;
+  width: calc(100% - v.space(48));
+  max-width: 400px;
+  text-align: center;
 }
 
 .success {
