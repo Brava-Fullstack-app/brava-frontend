@@ -1,0 +1,50 @@
+@use "../../styles/abstracts/variables" as v;
+@use "../../styles/abstracts/mixins" as m;
+
+.page {
+  @include m.flex-column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: v.space(48) v.space(24);
+  text-align: left;
+  gap: v.space(32);
+  background-color: v.$color-background;
+}
+
+.logo {
+  height: auto;
+  width: 22rem;
+
+  //   @include m.respond-to(tablet) {
+  //     height: 120px;
+  //   }
+}
+
+.illustration {
+  width: 22.69763rem;
+  height: auto;
+  margin-top: -6rem;
+}
+
+.description {
+  font-size: v.$font-size-base;
+  color: v.$color-pink-900;
+  line-height: 1.5;
+}
+
+.loginLink {
+  font-size: v.$font-size-sm;
+  color: v.$color-neutral-600;
+
+  a {
+    color: v.$color-primary;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
