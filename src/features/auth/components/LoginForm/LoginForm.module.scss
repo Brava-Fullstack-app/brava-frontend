@@ -1,0 +1,7 @@
+@use '../../../../styles/abstracts/variables' as v;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(20);
+}

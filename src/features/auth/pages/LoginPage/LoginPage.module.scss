@@ -1,0 +1,50 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.page {
+  min-height: 100vh;
+  background-color: v.$color-background;
+}
+
+.content {
+  padding: v.space(32) v.space(24);
+  max-width: 480px;
+  margin: 0 auto;
+
+  @include m.respond-to(tablet) {
+    padding: v.space(48) v.space(32);
+    max-width: 1200px;
+  }
+}
+
+.title {
+  font-size: v.$font-size-2xl;
+  font-weight: v.$font-weight-bold;
+  color: v.$color-text;
+  margin-bottom: v.space(12);
+}
+
+.subtitle {
+  font-size: v.$font-size-base;
+  color: v.$color-text-muted;
+  margin-bottom: v.space(32);
+}
+
+.link {
+  margin-top: v.space(24);
+  text-align: center;
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+
+  a{
+    background-color: transparent;
+    color: v.$color-primary;
+    border-radius: 0;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  
+    &:hover:not(:disabled) {
+      text-decoration: none;
+    }
+  }
+}

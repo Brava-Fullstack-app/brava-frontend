@@ -1,11 +1,5 @@
-import Header from '../shared/components/organisms/Header/Header';
+import AppProviders from './AppProviders';
 
 export default function App() {
-
-  return (
-    <div>
-      <Header showProfile = "true"/>
-    
-    </div>
-  );
+  return <AppProviders />;
 }
