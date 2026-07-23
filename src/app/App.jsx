@@ -1,19 +1,10 @@
-import { useEffect } from 'react';
-import { loginUser } from '../features/auth/services/authApi';
+import Button from '../shared/components/atoms/Button/Button';
 
-function App() {
-  useEffect(() => {
-  console.log('useEffect ejecutado');
-  loginUser({ email: 'judy@test.com', password: '123456' })
-    .then((data) => console.log('Login OK:', data))
-    .catch((error) => console.error('Login FALLÓ:', error));
-}, []);
-
+export default function App() {
   return (
     <div>
-      <h1>Brava - Test de conexión</h1>
+      <h1>Brava - Test</h1>
+      <Button variant="tertiary">Mi boton</Button>
     </div>
   );
 }
-
-export default App;

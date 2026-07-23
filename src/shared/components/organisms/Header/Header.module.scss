@@ -1,0 +1,23 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.header {
+  @include m.flex-between;
+  height: 59px;
+  padding: 0 v.space(24);
+  background-color: v.$color-pink-50;
+  box-shadow: v.$shadow-topbar;
+}
+
+.profileButton {
+  @include m.button-reset;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(2);
+  color: v.$color-text-muted;
+}
+
+.profileLabel {
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+}
