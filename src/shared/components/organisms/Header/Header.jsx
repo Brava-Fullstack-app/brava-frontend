@@ -1,23 +1,34 @@
-import { PersonCircle } from 'react-bootstrap-icons';
-import Logo from '../../atoms/Logo/Logo';
 import styles from './Header.module.scss';
 
-function Header({ showProfile = false, onProfileClick }) {
+function Header({ showProfile = false, onProfileClick, onHomeClick }) {
   return (
     <header className={styles.header}>
-      <Logo size="small" />
+      <img src="public\Simbol brava 1.svg" alt="Brava icon" className={styles.logo} />
 
-      {showProfile && (
+      <div className={styles.rightGroup}>
+        {showProfile && (
+          <button
+            type="button"
+            className={styles.profileButton}
+            onClick={onProfileClick}
+            aria-label="Open profile menu"
+          >
+            <i className="bi bi-person-circle"></i>
+            <span className={styles.profileLabel}>Perfil</span>
+          </button>
+        )}
+
         <button
           type="button"
-          className={styles.profileButton}
-          onClick={onProfileClick}
-          aria-label="Open profile menu"
+          className={styles.iconButton}
+          onClick={onHomeClick}
+          aria-label="Go to home"
         >
-          <PersonCircle size={24} />
-          <span className={styles.profileLabel}>Perfil</span>
+          <i className="bi bi-house"></i>
+          <i className="bi bi-house-fill"></i>
+          <span className={styles.profileLabel}>Inicio</span>
         </button>
-      )}
+      </div>
     </header>
   );
 }
