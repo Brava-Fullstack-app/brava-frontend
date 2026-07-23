@@ -41,14 +41,24 @@
 
 .leadingIcon,
 .toggleButton,
+.clearButton,
 .errorIcon {
   @include m.flex-center;
   flex-shrink: 0;
   color: v.$color-text-muted;
 }
 
-.toggleButton {
+.toggleButton,
+.clearButton {
   @include m.button-reset;
+}
+
+.clearButton {
+  padding: v.space(4);
+
+  &:hover {
+    color: v.$color-text;
+  }
 }
 
 .errorIcon {

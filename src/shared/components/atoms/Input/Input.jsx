@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ExclamationCircleFill, EyeFill, EyeSlashFill } from 'react-bootstrap-icons';
 import styles from './Input.module.scss';
 
 function Input({
@@ -7,9 +6,11 @@ function Input({
   label,
   required = false,
   type = 'text',
-  icon: LeadingIcon,
+  icon,
   helperText,
   error,
+  clearable = false,
+  onClear,
   ...rest
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,13 +26,24 @@ function Input({
       )}
 
       <div className={`${styles.wrapper} ${error ? styles.wrapperError : ''}`}>
-        {LeadingIcon && (
+        {icon && (
           <span className={styles.leadingIcon}>
-            <LeadingIcon size={18} />
+            <i className={`bi ${icon}`}></i>
           </span>
         )}
 
         <input id={id} type={resolvedType} className={styles.input} {...rest} />
+
+        {clearable && rest.value && (
+          <button
+            type="button"
+            className={styles.clearButton}
+            onClick={onClear}
+            aria-label="Clear"
+          >
+            <i className="bi bi-x-lg"></i>
+          </button>
+        )}
 
         {isPasswordField && (
           <button
@@ -40,13 +52,13 @@ function Input({
             onClick={() => setShowPassword((prev) => !prev)}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
-            {showPassword ? <EyeSlashFill size={18} /> : <EyeFill size={18} />}
+            {showPassword ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-fill"></i>}
           </button>
         )}
 
         {error && (
           <span className={styles.errorIcon}>
-            <ExclamationCircleFill size={18} />
+            <i className="bi bi-exclamation-circle-fill"></i>
           </span>
         )}
       </div>
