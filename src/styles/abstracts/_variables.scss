@@ -1,0 +1,144 @@
+@use 'sass:map';
+
+// ==================== COLORES ====================
+// Base
+$color-white: #ffffff;
+$color-black: #16020b;
+
+// Neutral
+$color-neutral-0: rgba(242, 240, 241, 0.5);
+$color-neutral-50: #f2f0f1;
+$color-neutral-100: #e4e0e2;
+$color-neutral-200: #cac2c6;
+$color-neutral-300: #afa3a9;
+$color-neutral-400: #95858d;
+$color-neutral-500: #7a6670;
+$color-neutral-600: #62525a;
+$color-neutral-700: #493d43;
+$color-neutral-800: #31292d;
+$color-neutral-900: #181416;
+
+// Pink (color de marca)
+$color-pink-0: rgba(251, 232, 241, 0.5);
+$color-pink-50: #fbe8f1;
+$color-pink-100: #f7d0e3;
+$color-pink-200: #efa2c7;
+$color-pink-300: #e773aa;
+$color-pink-400: #df458e;
+$color-pink-500: #d71672;
+$color-pink-600: #ac125b;
+$color-pink-700: #810d44;
+$color-pink-800: #56092e;
+$color-pink-900: #2b0417;
+
+// Orange
+$color-orange-0: rgba(255, 241, 229, 0.5);
+$color-orange-50: #fff1e5;
+$color-orange-100: #ffe4cc;
+$color-orange-200: #ffc999;
+$color-orange-300: #ffad66;
+$color-orange-400: #ff9233;
+$color-orange-500: #ff7700;
+$color-orange-600: #cc5f00;
+$color-orange-700: #994700;
+$color-orange-800: #663000;
+$color-orange-900: #331800;
+
+// Green (éxito)
+$color-green-0: rgba(233, 249, 239, 0.5);
+$color-green-50: #e9f9ef;
+$color-green-100: #d3f3df;
+$color-green-200: #a7e8bf;
+$color-green-300: #7adc9e;
+$color-green-400: #4ed17e;
+$color-green-500: #22c55e;
+$color-green-600: #1b9e4b;
+$color-green-700: #147638;
+$color-green-800: #0e4f26;
+$color-green-900: #072713;
+
+// Red (error)
+$color-red-0: rgba(253, 236, 236, 0.5);
+$color-red-50: #fdecec;
+$color-red-100: #fcdada;
+$color-red-200: #f9b4b4;
+$color-red-300: #f58f8f;
+$color-red-400: #f26969;
+$color-red-500: #ef4444;
+$color-red-600: #c13737;
+$color-red-700: #932929;
+$color-red-800: #661c1c;
+$color-red-900: #380e0e;
+
+// Alias semánticos (usa estos en los componentes, no los de arriba directamente)
+$color-primary: $color-pink-500;
+$color-primary-hover: $color-pink-600;
+$color-primary-light: $color-pink-50;
+
+$color-text: $color-neutral-900;
+$color-text-muted: $color-neutral-500;
+$color-border: $color-neutral-100;
+$color-surface: $color-neutral-50;
+$color-background: $color-white;
+
+$color-error: $color-red-500;
+$color-error-light: $color-red-50;
+$color-success: $color-green-500;
+
+// ==================== ESPACIADO ====================
+$spacing-scale: (
+  0: 0,
+  4: 4,
+  8: 8,
+  12: 12,
+  16: 16,
+  20: 20,
+  24: 24,
+  28: 28,
+  32: 32,
+  36: 36,
+  40: 40,
+  44: 44,
+  48: 48,
+  64: 64,
+  80: 80,
+  96: 96,
+  112: 112,
+  140: 140,
+  168: 168,
+  196: 196,
+  224: 224,
+);
+
+@function space($key) {
+  $value: map.get($spacing-scale, $key);
+  @return calc(#{$value} / 16 * 1rem);
+}
+
+// ==================== TIPOGRAFÍA ====================
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.5rem;    // 24px
+$font-size-2xl: 2rem;     // 32px
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ==================== BORDES Y SOMBRAS ====================
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-full: 999px;
+
+$shadow-sm: 0 1px 4px 0 rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 7px 0 rgba(0, 0, 0, 0.25);
+
+// ==================== BREAKPOINTS ====================
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
