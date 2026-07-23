@@ -7,7 +7,11 @@ function WelcomePage() {
 
   return (
     <div className={styles.page}>
-      <img src="src\assets\images\Logo Brava.svg" alt="Brava logo" className={styles.logo} />
+      <img
+        src="src\assets\images\Logo Brava.svg"
+        alt="Brava logo"
+        className={styles.logo}
+      />
 
       <img
         src="src\assets\images\Onb. final (20260106024041).png"
@@ -20,7 +24,9 @@ function WelcomePage() {
         recursos que te ayudarán en tu proceso oncológico.
       </p>
 
-      <Button onClick={() => navigate("/register")}>Crea una cuenta</Button>
+      <div className={styles.buttonWrapper}>
+        <Button onClick={() => navigate("/register")}>Crea una cuenta</Button>
+      </div>
 
       <p className={styles.loginLink}>
         Si ya tienes una cuenta,{" "}
