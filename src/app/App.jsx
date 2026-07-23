@@ -5,7 +5,7 @@ export default function App() {
   return (
     <div>
 
-     <Button variant="tertiary">Soy un botón</Button>
+     <Button variant="tertiary" icon="bi-plus-lg">Soy un botón</Button>
     </div>
   );
 }

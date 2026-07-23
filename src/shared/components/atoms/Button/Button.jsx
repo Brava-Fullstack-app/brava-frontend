@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 function Button({
   children,
   variant = 'primary',
-  icon: Icon,
+  icon,
   fullWidth = true,
   disabled = false,
   type = 'button',
@@ -17,7 +17,7 @@ function Button({
 
   return (
     <button type={type} className={classNames} disabled={disabled} {...rest}>
-      {Icon && <Icon size={18} className={styles.icon} />}
+      {icon && <i className={`bi ${icon} ${styles.icon}`}></i>}
       {children}
     </button>
   );
