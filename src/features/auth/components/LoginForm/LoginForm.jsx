@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Input from '../../../../shared/components/atoms/Input/Input';
 import Button from '../../../../shared/components/atoms/Button/Button';
 import { useAuth } from '../../hooks/useAuth';
 import styles from './LoginForm.module.scss';
 
-function LoginForm() {
-  const navigate = useNavigate();
+function LoginForm({ onSuccess }) {
   const { login, loading } = useAuth();
 
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -21,7 +19,7 @@ function LoginForm() {
     setError('');
     try {
       await login(formData);
-      navigate('/calendar');
+      onSuccess();
     } catch (err) {
       setError(err.response?.data?.message || 'Error al iniciar sesión');
     }

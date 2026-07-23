@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Input from '../../../../shared/components/atoms/Input/Input';
 import Button from '../../../../shared/components/atoms/Button/Button';
 import { useAuth } from '../../hooks/useAuth';
 import styles from './RegisterForm.module.scss';
 
-function RegisterForm() {
-  const navigate = useNavigate();
+function RegisterForm({ onSuccess }) {
   const { register, loading } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -25,7 +23,7 @@ function RegisterForm() {
     setError('');
     try {
       await register(formData);
-      navigate('/calendar');
+      onSuccess();
     } catch (err) {
       setError(err.response?.data?.message || 'Error al registrarse');
     }
