@@ -1,0 +1,16 @@
+@use '../../../../styles/abstracts/variables' as v;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: v.space(24) v.space(16);
+
+  @media (min-width: v.$breakpoint-tablet) {
+    padding: v.space(32) v.space(64);
+  }
+}
