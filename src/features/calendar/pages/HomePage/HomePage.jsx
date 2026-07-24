@@ -4,8 +4,11 @@ import TodayDoses from "../../components/TodayDoses/TodayDoses";
 import TakeDoseModal from "../../components/TakeDoseModal/TakeDoseModal";
 import { medicationApi } from "../../../medication/services/medicationApi";
 import styles from "./HomePage.module.scss";
+import Button from "../../../../shared/components/atoms/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   const [doses, setDoses] = useState([]);
   const [selectedDose, setSelectedDose] = useState(null);
 
@@ -38,8 +41,8 @@ function HomePage() {
     <div className={styles.home}>
       <h1 className="home_title">Calendario</h1>
       <CalendarView onDayClick={(date) => console.log("Day clicked:", date)} />
+      <p className={styles.subtitle_home_page}>PRÓXIMA TOMA</p>
       <TodayDoses doses={doses} onDoseClick={(dose) => setSelectedDose(dose)} />
-
       {selectedDose && (
         <TakeDoseModal
           dose={selectedDose}
@@ -47,6 +50,14 @@ function HomePage() {
           onConfirm={handleConfirm}
         />
       )}
+
+      <div className={styles.fabWrapper}>
+        <Button
+          variant="primary"
+          icon="bi-plus-lg"
+          onClick={() => navigate("/medications/register")}
+        >Registrar medicamento</Button>
+      </div>
     </div>
   );
 }
