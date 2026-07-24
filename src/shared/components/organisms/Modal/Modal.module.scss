@@ -48,6 +48,10 @@
   line-height: 1.5;
 }
 
-.button {
+.children {
+  width: 100%;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(12);
   margin-top: v.space(8);
 }

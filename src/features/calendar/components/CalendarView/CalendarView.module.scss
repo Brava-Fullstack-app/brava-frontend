@@ -1,0 +1,44 @@
+@use "../../../../styles/abstracts/variables" as v;
+
+.calendarWrapper {
+  display: flex;
+  width: 100%;
+  padding: v.space(24) v.space(16);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: v.$radius-md;
+  border: 1px solid v.$color-neutral-300;
+  background-color: v.$color-white;
+  box-shadow: v.$shadow-md;
+}
+
+.hasDose :global(.rdp-day_button) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.15rem;
+    border-radius: 50%;
+    background-color: v.$color-primary;
+  }
+}
+
+.allCompleted :global(.rdp-day_button)::after {
+  background-color: v.$color-green-500;
+}
+
+.today :global(.rdp-day_button) {
+  background-color: v.$color-primary;
+  color: v.$color-white;
+}
+
+.outside :global(.rdp-day_button) {
+  color: v.$color-neutral-300;
+}

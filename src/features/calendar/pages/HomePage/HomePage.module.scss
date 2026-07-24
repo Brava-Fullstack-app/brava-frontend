@@ -1,0 +1,10 @@
+@use "../../../../styles/abstracts/variables" as v;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(24);
+  max-width: 600px;
+  margin: 0 auto;
+}
+

@@ -1,0 +1,89 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.container {
+  background: v.$color-white;
+  border-radius: v.$radius-md;
+  padding: v.space(20);
+  box-shadow: v.$shadow-sm;
+}
+
+.title {
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+  margin-bottom: v.space(16);
+}
+
+.empty {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-sm;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: v.space(12);
+}
+
+.item {
+  @include m.flex-between;
+  padding: v.space(12) v.space(16);
+  border-radius: v.$radius-sm;
+  background-color: v.$color-neutral-50;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: v.$color-neutral-100;
+  }
+}
+
+.completed {
+  opacity: 0.6;
+  cursor: default;
+
+  &:hover {
+    background-color: v.$color-neutral-50;
+  }
+}
+
+.info {
+  @include m.flex-column;
+  gap: v.space(4);
+}
+
+.name {
+  font-weight: v.$font-weight-medium;
+  color: v.$color-text;
+}
+
+.time {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.doseInfo {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.status {
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  padding: v.space(4) v.space(8);
+  border-radius: v.$radius-full;
+}
+
+.statusPending {
+  background-color: v.$color-orange-50;
+  color: v.$color-orange-600;
+}
+
+.statusCompleted {
+  background-color: v.$color-green-50;
+  color: v.$color-green-600;
+}

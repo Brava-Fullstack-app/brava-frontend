@@ -4,6 +4,7 @@ import RegisterPage from "../features/auth/pages/RegisterPage/RegisterPage";
 import WelcomePage from "../features/welcome/WelcomePage";
 import AppLayout from "../shared/components/layout/AppLayout/AppLayout";
 import ProtectedRoute from "../shared/components/layout/ProtectedRoute/ProtectedRoute";
+import HomePage from "../features/calendar/pages/HomePage/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/calendar",
-            element: <div>Calendar placeholder</div>,
+            element: <HomePage/>,
           },
           {
             path: "/medications/register",
