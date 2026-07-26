@@ -18,8 +18,17 @@
   text-transform: uppercase;
 }
 
-.home{
+.home {
   display: flex;
   flex-direction: column;
-  gap:2rem;
+  gap: 2rem;
+}
+
+.home__title {
+  color: v.$color-pink-900;
+  text-align: center;
+  font-family: v.$font-family-base;
+  font-size: v.$font-size-xl;
+  font-weight: v.$font-weight-medium;
+  margin-bottom: -1rem;
 }

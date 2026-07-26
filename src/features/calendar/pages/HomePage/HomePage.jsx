@@ -39,7 +39,7 @@ function HomePage() {
 
   return (
     <div className={styles.home}>
-      <h1 className="home_title">Calendario</h1>
+      <h1 className={styles.home__title}>Calendario</h1>
       <CalendarView onDayClick={(date) => console.log("Day clicked:", date)} />
       <p className={styles.subtitle_home_page}>PRÓXIMA TOMA</p>
       <TodayDoses doses={doses} onDoseClick={(dose) => setSelectedDose(dose)} />
