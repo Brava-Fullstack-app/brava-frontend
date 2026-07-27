@@ -20,14 +20,17 @@ httpClient.interceptors.response.use(
   (error) => {
     const token = localStorage.getItem("token");
 
-    if (error.response?.status === 401 && token) {
+    if (
+      (error.response?.status === 401 || error.response?.status === 403) &&
+      token
+    ) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       window.location.href = "/login";
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default httpClient;

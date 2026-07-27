@@ -1,0 +1,71 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+}
+
+.label {
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+}
+
+.required {
+  color: v.$color-primary;
+}
+
+.wrapper {
+  position: relative;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+
+  &:focus-within {
+    border-color: v.$color-primary;
+  }
+}
+
+.wrapperError {
+  border-color: v.$color-error;
+}
+
+.select {
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: v.space(16);
+  padding-right: v.space(40);
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+
+  &:invalid {
+    color: v.$color-neutral-400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.chevron {
+  position: absolute;
+  right: v.space(16);
+  top: 50%;
+  transform: translateY(-50%);
+  color: v.$color-text-muted;
+  pointer-events: none;
+}
+
+.helperText {
+  font-size: v.$font-size-xs;
+  color: v.$color-text-muted;
+}
+
+.errorText {
+  font-size: v.$font-size-xs;
+  color: v.$color-error;
+}

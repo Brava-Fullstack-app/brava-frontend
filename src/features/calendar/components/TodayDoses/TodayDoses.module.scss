@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: v.space(12);
+  width: 100%;
 }
 
 .title {
@@ -14,20 +15,12 @@
 }
 
 .container {
-  // background: v.$color-white;
-  // border-radius: v.$radius-md;
-  // padding: v.space(20);
-  // box-shadow: v.$shadow-sm;
   display: flex;
-  padding: 1.25rem;
   justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-
-  border-radius: v.$font-size-xs;
-border: 1px solid v.$color-neutral-500;
-background: v.$color-white;
-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 1rem;
+  width: 100%;
 }
 
 .empty {
@@ -42,19 +35,38 @@ box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: v.space(12);
+  width: 100%;
 }
 
 .item {
-  @include m.flex-between;
-  padding: v.space(12) v.space(16);
-  border-radius: v.$radius-sm;
-  background-color: v.$color-neutral-50;
+  position: relative;
+  width: 100%;
+  display: flex;
+  padding: 20px 20px 20px 32px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: v.space(12);
   cursor: pointer;
   transition: background-color 0.15s ease;
+  flex-direction: column;
 
   &:hover {
     background-color: v.$color-neutral-100;
   }
+
+  border-radius: v.$radius-md;
+  border: 1px solid var(--Checkbox-Unchecked-color-corner-unchecked, #7a6670);
+  background: var(--Background-background-color-primary-default, #fff);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.bar {
+  position: absolute;
+  left: 17px;
+  top: 22.25px;
+  width: 6px;
+  height: 40px;
+  border-radius: 9999px;
 }
 
 .completed {
@@ -68,12 +80,15 @@ box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
 .info {
   @include m.flex-column;
-  gap: v.space(4);
+  flex: 1;
+  margin: 0 v.space(12);
+  gap: v.space(2);
 }
 
 .name {
   font-weight: v.$font-weight-medium;
   color: v.$color-text;
+  font-size: v.$font-size-base;
 }
 
 .time {
@@ -91,6 +106,7 @@ box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   font-weight: v.$font-weight-semibold;
   padding: v.space(4) v.space(8);
   border-radius: v.$radius-full;
+  flex-shrink: 0;
 }
 
 .statusPending {
@@ -101,4 +117,58 @@ box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 .statusCompleted {
   background-color: v.$color-green-50;
   color: v.$color-green-600;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  gap: v.space(4);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+}
+
+.actionBtn {
+  @include m.button-reset;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  color: v.$color-neutral-400;
+  cursor: pointer;
+
+  i.bi-pen-fill,
+  i.bi-trash-fill {
+    display: none;
+  }
+
+  &:hover {
+    i.bi-pen,
+    i.bi-trash {
+      display: none;
+    }
+    i.bi-pen-fill,
+    i.bi-trash-fill {
+      display: inline;
+    }
+    color: v.$color-primary;
+  }
 }

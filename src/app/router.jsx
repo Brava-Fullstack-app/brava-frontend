@@ -5,6 +5,8 @@ import WelcomePage from "../features/welcome/WelcomePage";
 import AppLayout from "../shared/components/layout/AppLayout/AppLayout";
 import ProtectedRoute from "../shared/components/layout/ProtectedRoute/ProtectedRoute";
 import HomePage from "../features/calendar/pages/HomePage/HomePage";
+import RegisterMedication from "../features/medication/pages/RegisterMedication/RegisterMedication";
+import DayDetailPage from "../features/calendar/pages/DayDetailPage/DayDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +29,19 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/calendar",
-            element: <HomePage/>,
+            element: <HomePage />,
           },
           {
             path: "/medications/register",
-            element: <div>Register medication placeholder</div>,
+            element: <RegisterMedication />,
           },
           {
             path: "/profile",
             element: <div>Profile placeholder</div>,
+          },
+          {
+            path: "/calendar/:date",
+            element: <DayDetailPage />,
           },
         ],
       },

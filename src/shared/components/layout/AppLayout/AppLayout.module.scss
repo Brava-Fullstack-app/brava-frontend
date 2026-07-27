@@ -9,6 +9,7 @@
 .content {
   flex: 1;
   padding: v.space(24) v.space(16);
+  width: 100%;
 
   @media (min-width: v.$breakpoint-tablet) {
     padding: v.space(32) v.space(64);

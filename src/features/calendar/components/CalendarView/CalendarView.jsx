@@ -78,9 +78,6 @@ function CalendarView({ onDayClick }) {
         styles={rdpStyles}
         classNames={{
           today: styles.today,
-        }}
-        classNames={{
-          today: styles.today,
           outside: styles.outside,
         }}
         modifiers={{
