@@ -47,7 +47,7 @@
 
 .warning {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: v.space(8);
   font-size: v.$font-size-sm;
   color: v.$color-orange-600;

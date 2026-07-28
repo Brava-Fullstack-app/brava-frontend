@@ -65,7 +65,20 @@ function HomePage() {
         }}
       />
       <p className={styles.subtitle_home_page}>PRÓXIMA TOMA</p>
-      <NextDoseCard dose={nextDose} />
+      <NextDoseCard
+        dose={nextDose}
+        onClick={() => {
+          if (nextDose) {
+            setSelectedDose({
+              medicationId: nextDose.medicationId,
+              medicationName: nextDose.medicationName,
+              doseAmount: nextDose.doseAmount,
+              doseUnit: nextDose.doseUnit,
+              scheduledTime: nextDose.scheduledAt?.slice(11, 16),
+            });
+          }
+        }}
+      />
       <TodayDoses doses={doses} onDoseClick={(dose) => setSelectedDose(dose)} />
       {selectedDose && (
         <TakeDoseModal

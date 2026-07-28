@@ -1,6 +1,6 @@
 import styles from "./NextDoseCard.module.scss";
 
-function NextDoseCard({ dose }) {
+function NextDoseCard({ dose, onClick }) {
   if (!dose) return null;
 
   const scheduledDate = new Date(dose.scheduledAt);
@@ -18,7 +18,9 @@ function NextDoseCard({ dose }) {
         </div>
         <div className={styles.info}>
           <span className={styles.name}>{dose.medicationName}</span>
-          <span className={styles.timeLeft}>• {hours}:{minutes}</span>
+          <span className={styles.timeLeft}>
+            • {hours}:{minutes}
+          </span>
         </div>
       </div>
     );
@@ -43,7 +45,11 @@ function NextDoseCard({ dose }) {
         <span className={styles.name}>{dose.medicationName}</span>
         <span className={styles.timeLeft}>{timeLeft}</span>
       </div>
-      <button className={styles.arrowButton} aria-label="Ver detalle">
+      <button
+        className={styles.arrowButton}
+        aria-label="Ver detalle"
+        onClick={onClick}
+      >
         <i className="bi bi-arrow-right-circle"></i>
       </button>
     </div>
