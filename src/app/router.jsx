@@ -7,6 +7,7 @@ import ProtectedRoute from "../shared/components/layout/ProtectedRoute/Protected
 import HomePage from "../features/calendar/pages/HomePage/HomePage";
 import RegisterMedication from "../features/medication/pages/RegisterMedication/RegisterMedication";
 import DayDetailPage from "../features/calendar/pages/DayDetailPage/DayDetailPage";
+import ProfilePage from "../features/ProfilePage/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/profile",
-            element: <div>Profile placeholder</div>,
+            element: <ProfilePage />,
           },
           {
             path: "/calendar/:date",
