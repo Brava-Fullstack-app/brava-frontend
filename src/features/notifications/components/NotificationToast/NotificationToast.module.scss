@@ -1,0 +1,82 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.toast {
+  position: fixed;
+  top: v.space(16);
+  right: v.space(16);
+  width: calc(100% - v.space(32));
+  max-width: 380px;
+  padding: v.space(16);
+  border-radius: v.$radius-md;
+  box-shadow: v.$shadow-md;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: v.space(12);
+  background-color: v.$color-white;
+}
+
+.toastNow {
+  border-left: 4px solid v.$color-primary;
+}
+
+.toastReminder {
+  border-left: 4px solid v.$color-orange-500;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+}
+
+.header i.bi-bell-fill {
+  color: v.$color-primary;
+  font-size: 16px;
+}
+
+.toastReminder .header i.bi-bell-fill {
+  color: v.$color-orange-500;
+}
+
+.typeLabel {
+  flex: 1;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  text-transform: uppercase;
+  color: v.$color-text-muted;
+}
+
+.closeBtn {
+  @include m.button-reset;
+  color: v.$color-text-muted;
+  font-size: 14px;
+
+  &:hover {
+    color: v.$color-text;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(4);
+}
+
+.medName {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+}
+
+.doseInfo {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+}

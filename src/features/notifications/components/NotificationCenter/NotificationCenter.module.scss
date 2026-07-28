@@ -1,0 +1,13 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.toastWrapper {
+  position: fixed;
+  right: 16px;
+  pointer-events: all;
+}

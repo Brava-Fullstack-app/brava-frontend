@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { medicationApi } from '../services/medicationApi';
+import { useState } from "react";
+import { medicationApi } from "../services/medicationApi";
 
 const INITIAL_STATE = {
-  treatmentCategory: '',
-  medicationName: '',
+  treatmentCategory: "",
+  medicationName: "",
   quantity: 1,
-  doseAmount: '',
-  doseUnit: '',
-  time: '',
-  frequencyInterval: '',
-  frequencyUnit: 'DAYS',
-  startDate: new Date().toISOString().split('T')[0],
+  doseAmount: "",
+  doseUnit: "",
+  time: "",
+  frequencyInterval: "",
+  frequencyUnit: "DAYS",
+  startDate: new Date().toISOString().split("T")[0],
   reminderEnabled: false,
 };
 
@@ -33,8 +33,8 @@ export function useAddMedicationForm() {
         quantity: formData.quantity,
         doseAmount: formData.doseAmount ? Number(formData.doseAmount) : null,
         doseUnit: formData.doseUnit || null,
-        time: `${formData.time}:00`,
-        frequencyInterval: Number(formData.frequencyInterval),
+        time: formData.time ? `${formData.time}:00` : "00:00:00",
+        frequencyInterval: Number(formData.frequencyInterval) || 1,
         frequencyUnit: formData.frequencyUnit,
         startDate: formData.startDate,
         reminderEnabled: formData.reminderEnabled,
@@ -43,7 +43,9 @@ export function useAddMedicationForm() {
       await medicationApi.create(payload);
       return true;
     } catch (err) {
-      setError(err.response?.data?.message ?? 'No se pudo guardar el medicamento');
+      setError(
+        err.response?.data?.message ?? "No se pudo guardar el medicamento",
+      );
       return false;
     } finally {
       setIsLoading(false);
