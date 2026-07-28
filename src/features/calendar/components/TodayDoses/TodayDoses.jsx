@@ -38,7 +38,7 @@ function TodayDoses({ doses = [], onDoseClick, onEdit, onDelete, showActions = f
                       </span>
                       {dose.doseAmount != null && (
                         <>
-                          <span>•</span>
+                          <span className={styles.time}>•</span>
                           <span className={styles.doseInfo}>
                             {dose.doseAmount} {dose.doseUnit}
                           </span>

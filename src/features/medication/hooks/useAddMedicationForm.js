@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   frequencyInterval: "",
   frequencyUnit: "DAYS",
   startDate: new Date().toISOString().split("T")[0],
+  endDate: "",
   reminderEnabled: false,
 };
 
@@ -37,6 +38,7 @@ export function useAddMedicationForm() {
         frequencyInterval: Number(formData.frequencyInterval) || 1,
         frequencyUnit: formData.frequencyUnit,
         startDate: formData.startDate,
+        endDate: formData.endDate || null,
         reminderEnabled: formData.reminderEnabled,
       };
 

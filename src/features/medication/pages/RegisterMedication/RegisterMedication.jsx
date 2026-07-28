@@ -50,6 +50,7 @@ function RegisterMedication() {
           frequencyInterval={formData.frequencyInterval}
           frequencyUnit={formData.frequencyUnit}
           startDate={formData.startDate}
+          endDate={formData.endDate}
           onChange={updateField}
         />
 

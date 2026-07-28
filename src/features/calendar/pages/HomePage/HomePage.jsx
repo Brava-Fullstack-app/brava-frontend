@@ -60,6 +60,7 @@ useEffect(() => {
 
   return (
     <div className={styles.home}>
+      <div className={styles.home__wrapper1}>
       <h1 className={styles.home__title}>Calendario</h1>
       <CalendarView
         onDayClick={(date) => {
@@ -67,6 +68,8 @@ useEffect(() => {
           navigate(`/calendar/${dateStr}`);
         }}
       />
+      </div>
+      <div className={styles.home__wrapper2}>
       <p className={styles.subtitle_home_page}>PRÓXIMA TOMA</p>
       <NextDoseCard
         dose={nextDose}
@@ -84,7 +87,8 @@ useEffect(() => {
             scheduledAt: `${format(new Date(), "yyyy-MM-dd")}T${(dose.scheduledTime || "00:00").slice(0, 5)}:00`,
           })
         }
-      />
+        />
+        </div>
       {selectedDose && (
         <TakeDoseModal
           dose={selectedDose}

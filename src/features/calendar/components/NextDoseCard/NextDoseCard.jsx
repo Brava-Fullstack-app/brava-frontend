@@ -3,6 +3,9 @@ import styles from "./NextDoseCard.module.scss";
 function NextDoseCard({ dose, onClick }) {
   if (!dose) return <p className={styles.emptyMessage}>No hay próximas tomas</p>;
 
+  const daysUntil = (new Date(dose.scheduledAt) - new Date()) / (1000 * 60 * 60 * 24);
+  if (daysUntil > 7) return null;
+
   const scheduledDate = new Date(dose.scheduledAt);
   const now = new Date();
   const diffMs = scheduledDate - now;

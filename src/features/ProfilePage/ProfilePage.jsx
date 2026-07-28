@@ -20,6 +20,8 @@ function ProfilePage() {
         <div className={styles.avatar}>
           <i className="bi bi-person-fill"></i>
         </div>
+
+        <div className={styles.fieldWrapper}>
         <div className={styles.field}>
           <span className={styles.label}>Nombre</span>
           <span className={styles.value}>{user?.name}</span>
@@ -28,10 +30,11 @@ function ProfilePage() {
           <span className={styles.label}>Correo</span>
           <span className={styles.value}>{user?.email}</span>
         </div>
+        </div>
       </div>
 
-      <div className={styles.card}>
-        <Button variant="danger" fullWidth onClick={handleLogout}>
+      <div>
+        <Button fullWidth onClick={handleLogout}>
           <i className="bi bi-box-arrow-right"></i> Cerrar sesión
         </Button>
       </div>
