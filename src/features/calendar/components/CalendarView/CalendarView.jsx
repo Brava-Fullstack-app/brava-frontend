@@ -3,6 +3,7 @@ import { DayPicker } from "react-day-picker";
 import { es } from "date-fns/locale";
 import { calendarApi } from "../../services/calendarApi";
 import styles from "./CalendarView.module.scss";
+import { format } from "date-fns";
 
 function CalendarView({ onDayClick }) {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
@@ -23,18 +24,18 @@ function CalendarView({ onDayClick }) {
   }, [selectedMonth]);
 
   const hasDose = (date) => {
-    const dateStr = date.toISOString().split("T")[0];
-    const day = calendarDays.find((d) => d.date === dateStr);
-    return day && day.scheduledDoses > 0;
-  };
+  const dateStr = format(date, "yyyy-MM-dd");
+  const day = calendarDays.find((d) => d.date === dateStr);
+  return day && day.scheduledDoses > 0;
+};
 
-  const allCompleted = (date) => {
-    const dateStr = date.toISOString().split("T")[0];
-    const day = calendarDays.find((d) => d.date === dateStr);
-    return (
-      day && day.scheduledDoses > 0 && day.completedDoses === day.scheduledDoses
-    );
-  };
+const allCompleted = (date) => {
+  const dateStr = format(date, "yyyy-MM-dd");
+  const day = calendarDays.find((d) => d.date === dateStr);
+  return (
+    day && day.scheduledDoses > 0 && day.completedDoses === day.scheduledDoses
+  );
+};
 
   const rdpStyles = {
     root: {

@@ -1,46 +1,36 @@
-import { useState, useMemo } from "react";
-import { format, parseISO, isToday, isFuture, differenceInMinutes } from "date-fns";
+import { useState } from "react";
+import { format} from "date-fns";
 import Modal from "../../../../shared/components/organisms/Modal/Modal";
 import Input from "../../../../shared/components/atoms/Input/Input";
 import Button from "../../../../shared/components/atoms/Button/Button";
 import styles from "./TakeDoseModal.module.scss";
 
 function TakeDoseModal({ dose, date, onClose, onConfirm }) {
-  const doseDate = date || format(new Date(), "yyyy-MM-dd");
-  const scheduledDateTime = useMemo(
-    () => parseISO(`${doseDate}T${dose.scheduledTime}`),
-    [doseDate, dose.scheduledTime]
-  );
+  const doseDate = dose.scheduledAt
+    ? dose.scheduledAt.slice(0, 10)
+    : date || format(new Date(), "yyyy-MM-dd");
 
-  const defaultTime = dose.scheduledTime?.slice(0, 5) || "00:00";
+  const isAnotherDay = doseDate !== format(new Date(), "yyyy-MM-dd");
+
+  const schedHour = dose.scheduledAt
+    ? parseInt(dose.scheduledAt.slice(11, 13), 10)
+    : parseInt((dose.scheduledTime || "00:00").slice(0, 2), 10);
+  const schedMin = dose.scheduledAt
+    ? parseInt(dose.scheduledAt.slice(14, 16), 10)
+    : parseInt((dose.scheduledTime || "00:00").slice(3, 5), 10);
+
+  const doseDt = new Date(`${doseDate}T${String(schedHour).padStart(2, "0")}:${String(schedMin).padStart(2, "0")}:00`);
+  const isDoseInFuture = doseDt > new Date();
+
+  const defaultTime = `${String(schedHour).padStart(2, "0")}:${String(schedMin).padStart(2, "0")}`;
   const [selectedTime, setSelectedTime] = useState(defaultTime);
 
-  const now = useMemo(() => new Date(), []);
-
-  const isFutureDay = isFuture(scheduledDateTime) && !isToday(scheduledDateTime);
-
-  const minutesLeft = useMemo(() => {
-    const [hours, minutes] = selectedTime.split(":").map(Number);
-    const selected = new Date(scheduledDateTime);
-    selected.setHours(hours, minutes, 0, 0);
-    return differenceInMinutes(selected, now);
-  }, [selectedTime, scheduledDateTime, now]);
-
-  const isFutureToday = isToday(scheduledDateTime) && minutesLeft > 0;
-
   const handleConfirm = () => {
-    const [hours, minutes] = selectedTime.split(":").map(Number);
-    const takenAt = new Date(scheduledDateTime);
-    takenAt.setHours(hours, minutes, 0, 0);
-    onConfirm(takenAt.toISOString());
-  };
-
-  const formatTimeLeft = (mins) => {
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    if (h > 0) return `${h} hora${h !== 1 ? "s" : ""} y ${m} minuto${m !== 1 ? "s" : ""}`;
-    return `${m} minuto${m !== 1 ? "s" : ""}`;
-  };
+  const [hours, minutes] = selectedTime.split(":").map(Number);
+  const now = new Date();
+  const localStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}T${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00`;
+  onConfirm(localStr);
+};
 
   return (
     <Modal onClose={onClose}>
@@ -63,18 +53,17 @@ function TakeDoseModal({ dose, date, onClose, onConfirm }) {
           />
         </div>
 
-        {isFutureDay && (
+        {isAnotherDay && (
           <p className={styles.warning}>
             <i className="bi bi-exclamation-circle"></i>
-            Este medicamento es para otro día. No puedes marcarlo como tomado aún.
+            Este medicamento es para {doseDate}. No puedes marcarlo como tomado aún.
           </p>
         )}
 
-        {isFutureToday && !isFutureDay && (
+        {!isAnotherDay && isDoseInFuture && (
           <p className={styles.warning}>
             <i className="bi bi-exclamation-circle"></i>
-            Todavía faltan {formatTimeLeft(minutesLeft)} para la hora programada.
-            ¿Confirmas que ya te lo tomaste?
+            Todavía faltan para la hora programada. ¿Confirmas que ya te lo tomaste?
           </p>
         )}
 
@@ -83,9 +72,9 @@ function TakeDoseModal({ dose, date, onClose, onConfirm }) {
             variant="primary"
             fullWidth
             onClick={handleConfirm}
-            disabled={isFutureDay}
+            disabled={isAnotherDay || isDoseInFuture}
           >
-            {isFutureToday && !isFutureDay ? "Sí, confirmar" : "Sí, me lo tomé"}
+            {isDoseInFuture && !isAnotherDay ? "Sí, confirmar" : "Sí, me lo tomé"}
           </Button>
           <Button variant="secondary" fullWidth onClick={onClose}>
             Cancelar

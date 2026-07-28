@@ -1,7 +1,7 @@
 import styles from "./NextDoseCard.module.scss";
 
 function NextDoseCard({ dose, onClick }) {
-  if (!dose) return null;
+  if (!dose) return <p className={styles.emptyMessage}>No hay próximas tomas</p>;
 
   const scheduledDate = new Date(dose.scheduledAt);
   const now = new Date();

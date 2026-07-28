@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import CalendarView from "../../components/CalendarView/CalendarView";
 import TodayDoses from "../../components/TodayDoses/TodayDoses";
 import NextDoseCard from "../../components/NextDoseCard/NextDoseCard";
@@ -12,7 +12,6 @@ import { format } from "date-fns";
 
 function HomePage() {
   const navigate = useNavigate();
-  const { registerRefresh } = useOutletContext();
   const [doses, setDoses] = useState([]);
   const [nextDose, setNextDose] = useState(null);
   const [selectedDose, setSelectedDose] = useState(null);
@@ -28,10 +27,26 @@ function HomePage() {
     }
   }, []);
 
-  useEffect(() => {
-    registerRefresh(refreshAll);
-    return () => registerRefresh(null);
-  }, [refreshAll, registerRefresh]);
+useEffect(() => {
+  let mounted = true;
+  (async () => {
+    try {
+      const { data } = await medicationApi.getToday();
+      if (mounted) setDoses(data);
+      const { data: next } = await calendarApi.getNextDose();
+      if (mounted) setNextDose(next);
+    } catch (err) {
+      console.error("Error loading:", err);
+    }
+  })();
+  return () => { mounted = false; };
+}, []);
+
+useEffect(() => {
+  const handler = () => refreshAll();
+  window.addEventListener("dose-registered", handler);
+  return () => window.removeEventListener("dose-registered", handler);
+}, [refreshAll]);
 
   const handleConfirm = async (takenAt) => {
     try {
@@ -57,21 +72,23 @@ function HomePage() {
         dose={nextDose}
         onClick={() => {
           if (nextDose) {
-            setSelectedDose({
-              medicationId: nextDose.medicationId,
-              medicationName: nextDose.medicationName,
-              doseAmount: nextDose.doseAmount,
-              doseUnit: nextDose.doseUnit,
-              scheduledTime: nextDose.scheduledAt?.slice(11, 16),
-            });
+            setSelectedDose(nextDose);
           }
         }}
       />
-      <TodayDoses doses={doses} onDoseClick={(dose) => setSelectedDose(dose)} />
+      <TodayDoses
+        doses={doses}
+        onDoseClick={(dose) =>
+          setSelectedDose({
+            ...dose,
+            scheduledAt: `${format(new Date(), "yyyy-MM-dd")}T${(dose.scheduledTime || "00:00").slice(0, 5)}:00`,
+          })
+        }
+      />
       {selectedDose && (
         <TakeDoseModal
           dose={selectedDose}
-          date={format(new Date(), "yyyy-MM-dd")}
+          date={selectedDose.scheduledAt?.slice(0, 10) || format(new Date(), "yyyy-MM-dd")}
           onClose={() => setSelectedDose(null)}
           onConfirm={handleConfirm}
         />

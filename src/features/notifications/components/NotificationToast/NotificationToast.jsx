@@ -5,7 +5,7 @@ import Button from "../../../../shared/components/atoms/Button/Button";
 import Input from "../../../../shared/components/atoms/Input/Input";
 import styles from "./NotificationToast.module.scss";
 
-function NotificationToast({ notification, onDoseRegistered }) {
+function NotificationToast({ notification}) {
   const { removeNotification } = useNotifications();
   const [time, setTime] = useState(() => {
     const now = new Date();
@@ -13,19 +13,19 @@ function NotificationToast({ notification, onDoseRegistered }) {
   });
 
   const handleConfirm = async () => {
-    try {
-      const [h, m] = time.split(":").map(Number);
-      const takenAt = new Date();
-      takenAt.setHours(h, m, 0, 0);
-      await medicationApi.registerDose(notification.medicationId, {
-        takenAt: takenAt.toISOString(),
-      });
-      removeNotification(notification.id);
-      onDoseRegistered?.();
-    } catch (err) {
-      console.error("Error registering dose:", err);
-    }
-  };
+  try {
+    const [h, m] = time.split(":").map(Number);
+    const now = new Date();
+    const localStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}T${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:00`;
+    await medicationApi.registerDose(notification.medicationId, {
+      takenAt: localStr,
+    });
+    removeNotification(notification.id);
+    window.dispatchEvent(new CustomEvent("dose-registered"));
+  } catch (err) {
+    console.error("Error registering dose:", err);
+  }
+};
 
   return (
     <div className={`${styles.toast} ${notification.type === "now" ? styles.toastNow : styles.toastReminder}`}>

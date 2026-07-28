@@ -8,6 +8,7 @@ import HomePage from "../features/calendar/pages/HomePage/HomePage";
 import RegisterMedication from "../features/medication/pages/RegisterMedication/RegisterMedication";
 import DayDetailPage from "../features/calendar/pages/DayDetailPage/DayDetailPage";
 import ProfilePage from "../features/ProfilePage/ProfilePage";
+import NotFoundPage from "../features/NotFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

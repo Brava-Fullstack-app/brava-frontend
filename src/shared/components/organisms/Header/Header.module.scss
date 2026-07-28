@@ -58,6 +58,18 @@
       opacity: 1;
     }
   }
+
+  &.active {
+    color: v.$color-pink-500;
+
+    :global(.bi-house) {
+      opacity: 0;
+    }
+
+    :global(.bi-house-fill) {
+      opacity: 1;
+    }
+  }
 }
 
 .profileButton {
@@ -68,6 +80,10 @@
   color: v.$color-neutral-600;
 
   &:hover {
+    color: v.$color-pink-500;
+  }
+
+  &.active {
     color: v.$color-pink-500;
   }
 }

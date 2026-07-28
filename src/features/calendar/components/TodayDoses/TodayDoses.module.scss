@@ -155,20 +155,22 @@
   color: v.$color-neutral-400;
   cursor: pointer;
 
-  i.bi-pen-fill,
-  i.bi-trash-fill {
+  :global(.bi-pen-fill),
+  :global(.bi-trash-fill) {
     display: none;
   }
 
   &:hover {
-    i.bi-pen,
-    i.bi-trash {
+    :global(.bi-pen),
+    :global(.bi-trash) {
       display: none;
     }
-    i.bi-pen-fill,
-    i.bi-trash-fill {
+
+    :global(.bi-pen-fill),
+    :global(.bi-trash-fill) {
       display: inline;
     }
+
     color: v.$color-primary;
   }
 }

@@ -54,3 +54,9 @@
     color: v.$color-primary-hover;
   }
 }
+
+.emptyMessage {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-sm;
+  text-align: flex-start;
+}

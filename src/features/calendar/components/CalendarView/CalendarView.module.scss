@@ -3,7 +3,7 @@
 .calendarWrapper {
   display: flex;
   width: 100%;
-  height:394px;
+  height: 394px;
   padding: v.space(24) v.space(16);
   flex-direction: column;
   justify-content: flex-start;
@@ -36,14 +36,15 @@
 }
 
 .today :global(.rdp-day_button) {
-  background-color: v.$color-primary;
-  color: v.$color-white;
+  border: 2px dashed v.$color-primary;
+  color: v.$color-pink-900;
+  background-color: transparent;
 }
 
 .outside :global(.rdp-day_button) {
   color: v.$color-neutral-300;
 }
 
-:global(.rdp-month_caption){
-  color:v.$color-pink-900;
+:global(.rdp-month_caption) {
+  color: v.$color-pink-900;
 }
