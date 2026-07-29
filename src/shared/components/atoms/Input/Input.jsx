@@ -32,7 +32,7 @@ function Input({
           </span>
         )}
 
-        <input id={id} type={resolvedType} className={styles.input} {...rest} />
+        <input id={id} type={resolvedType} className={styles.input} required={required} {...rest} />
 
         {clearable && rest.value && (
           <button
@@ -52,7 +52,7 @@ function Input({
             onClick={() => setShowPassword((prev) => !prev)}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
-            {showPassword ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-fill"></i>}
+            {showPassword ? <i className="bi bi-eye-fill"></i> : <i className="bi bi-eye"></i>}
           </button>
         )}
 

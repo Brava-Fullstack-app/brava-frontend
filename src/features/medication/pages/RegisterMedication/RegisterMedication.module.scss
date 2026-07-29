@@ -14,18 +14,22 @@
   height: 59px;
   padding: 0 v.space(24);
   background-color: v.$color-pink-50;
+  box-shadow: v.$shadow-sm;
 }
 
 .backButton {
   @include m.button-reset;
   @include m.flex-center;
   color: v.$color-text;
+  font-size: v.$font-size-xl;
 }
 
 .title {
   font-size: v.$font-size-lg;
   font-weight: v.$font-weight-bold;
   color: v.$color-text;
+  text-align: center;
+  flex: 1;
 }
 
 .content {

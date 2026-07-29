@@ -64,3 +64,12 @@
   flex-direction: column;
   gap: v.space(12);
 }
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+  margin: v.space(8) 0;
+}

@@ -9,7 +9,7 @@
 
 .label {
   font-size: v.$font-size-sm;
-  font-weight: v.$font-weight-regular;
+  font-weight: v.$font-weight-medium;
   color: v.$color-text;
 }
 
@@ -85,7 +85,7 @@
 
 .helperText {
   font-size: v.$font-size-xs;
-  color: v.$color-text-muted;
+  color: v.$color-neutral-600;
 }
 
 .errorText {

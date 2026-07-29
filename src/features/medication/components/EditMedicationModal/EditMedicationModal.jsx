@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Modal from "../../../../shared/components/organisms/Modal/Modal";
 import Input from "../../../../shared/components/atoms/Input/Input";
 import Select from "../../../../shared/components/atoms/Select/Select";
+import Stepper from "../../../../shared/components/atoms/Stepper/Stepper";
+import Toggle from "../../../../shared/components/atoms/Toggle/Toggle";
 import Button from "../../../../shared/components/atoms/Button/Button";
 import { DOSE_UNITS, FREQUENCY_UNITS } from "../../../medication/medication.types";
 import { medicationApi } from "../../../medication/services/medicationApi";
@@ -16,7 +18,10 @@ function EditMedicationModal({ dose, onClose, onConfirm }) {
     frequencyInterval: "",
     frequencyUnit: "",
     reminderEnabled: false,
+    startDate: "",
+    endDate: "",
   });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,6 +38,8 @@ function EditMedicationModal({ dose, onClose, onConfirm }) {
             frequencyInterval: med.frequencyInterval ?? "",
             frequencyUnit: med.frequencyUnit ?? "",
             reminderEnabled: med.reminderEnabled ?? false,
+            startDate: med.startDate ?? "",
+            endDate: med.endDate ?? "",
           });
         }
       } catch (err) {
@@ -45,10 +52,29 @@ function EditMedicationModal({ dose, onClose, onConfirm }) {
   }, [dose.medicationId]);
 
   const updateField = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+    setForm((prev) => {
+      const next = { ...prev, [field]: value };
+      if (field === "doseAmount" && value === "") {
+        next.doseUnit = "";
+      }
+      return next;
+    });
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  };
+
+  const validate = () => {
+    const errs = {};
+    if (!form.time) errs.time = "Requerido";
+    if (!form.frequencyInterval) errs.frequencyInterval = "Requerido";
+    if (!form.frequencyUnit) errs.frequencyUnit = "Requerido";
+    if (!form.startDate) errs.startDate = "Requerido";
+    if (form.doseAmount && !form.doseUnit) errs.doseUnit = "Selecciona una unidad";
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
   };
 
   const handleSubmit = () => {
+    if (!validate()) return;
     const payload = {
       ...form,
       doseAmount: form.doseAmount !== "" ? Number(form.doseAmount) : null,
@@ -70,22 +96,34 @@ function EditMedicationModal({ dose, onClose, onConfirm }) {
         <h2 className={styles.title}>Editar medicamento</h2>
         <p className={styles.subtitle}>{dose.medicationName}</p>
 
-        <div className={styles.field}>
-          <Input
-            label="Dosis"
-            type="number"
-            value={form.doseAmount}
-            onChange={(e) => updateField("doseAmount", e.target.value)}
-          />
-        </div>
+        <Stepper
+          label="Cantidad"
+          value={form.quantity}
+          onChange={(value) => updateField("quantity", value)}
+        />
 
-        <div className={styles.field}>
-          <Select
-            label="Unidad"
-            value={form.doseUnit}
-            options={DOSE_UNITS}
-            onChange={(e) => updateField("doseUnit", e.target.value)}
-          />
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <Input
+              label="Dosis (opcional)"
+              type="number"
+              min="0"
+              placeholder="Ej. 20"
+              value={form.doseAmount}
+              error={errors.doseAmount}
+              onChange={(e) => updateField("doseAmount", e.target.value)}
+            />
+          </div>
+          <div className={styles.field}>
+            <Select
+              label="Unidad (opcional)"
+              placeholder="mg"
+              value={form.doseUnit}
+              options={DOSE_UNITS}
+              error={errors.doseUnit}
+              onChange={(e) => updateField("doseUnit", e.target.value)}
+            />
+          </div>
         </div>
 
         <div className={styles.field}>
@@ -93,28 +131,60 @@ function EditMedicationModal({ dose, onClose, onConfirm }) {
             label="Hora"
             type="time"
             value={form.time}
+            error={errors.time}
             onChange={(e) => updateField("time", e.target.value)}
+            required
           />
         </div>
 
         <div className={styles.row}>
           <div className={styles.field}>
             <Input
-              label="Frecuencia"
+              label="¿Cada cuánto?"
               type="number"
+              placeholder="24"
               value={form.frequencyInterval}
+              error={errors.frequencyInterval}
               onChange={(e) => updateField("frequencyInterval", e.target.value)}
+              required
             />
           </div>
           <div className={styles.field}>
             <Select
-              label="Unidad frecuencia"
+              label="Frecuencia"
+              placeholder="Días"
               value={form.frequencyUnit}
               options={FREQUENCY_UNITS}
+              error={errors.frequencyUnit}
               onChange={(e) => updateField("frequencyUnit", e.target.value)}
             />
           </div>
         </div>
+
+        <div className={styles.field}>
+          <Input
+            label="Fecha de inicio"
+            type="date"
+            value={form.startDate}
+            onChange={(e) => updateField("startDate", e.target.value)}
+            required
+          />
+        </div>
+
+        <div className={styles.field}>
+          <Input
+            label="Fecha de fin (opcional)"
+            type="date"
+            value={form.endDate}
+            onChange={(e) => updateField("endDate", e.target.value)}
+          />
+        </div>
+
+        <Toggle
+          label="Recordatorio"
+          checked={form.reminderEnabled}
+          onChange={(checked) => updateField("reminderEnabled", checked)}
+        />
 
         <div className={styles.actions}>
           <Button variant="primary" fullWidth onClick={handleSubmit}>

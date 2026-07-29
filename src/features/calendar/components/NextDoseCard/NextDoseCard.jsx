@@ -10,24 +10,7 @@ function NextDoseCard({ dose, onClick }) {
   const now = new Date();
   const diffMs = scheduledDate - now;
 
-  if (diffMs <= 0) {
-    const hours = scheduledDate.getHours().toString().padStart(2, "0");
-    const minutes = scheduledDate.getMinutes().toString().padStart(2, "0");
-
-    return (
-      <div className={styles.card}>
-        <div className={styles.icon}>
-          <i className="bi bi-capsule-pill"></i>
-        </div>
-        <div className={styles.info}>
-          <span className={styles.name}>{dose.medicationName}</span>
-          <span className={styles.timeLeft}>
-            • {hours}:{minutes}
-          </span>
-        </div>
-      </div>
-    );
-  }
+  if (diffMs <= 0) return null;
 
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
   const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));

@@ -23,6 +23,7 @@ function MedicationTypeCard({ treatmentCategory, medicationName, onChange }) {
         options={TREATMENT_CATEGORIES}
         value={treatmentCategory}
         onChange={(event) => onChange('treatmentCategory', event.target.value)}
+        required
       />
 
       <Autocomplete
@@ -32,6 +33,7 @@ function MedicationTypeCard({ treatmentCategory, medicationName, onChange }) {
         options={catalogOptions}
         value={medicationName}
         onChange={(value) => onChange('medicationName', value)}
+        required
       />
     </FormCard>
   );

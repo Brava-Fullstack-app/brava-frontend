@@ -20,6 +20,7 @@ function ScheduleCard({
         type="time"
         value={time}
         onChange={(event) => onChange("time", event.target.value)}
+        required
       />
 
       <div className={styles.row}>
@@ -32,6 +33,7 @@ function ScheduleCard({
           onChange={(event) =>
             onChange("frequencyInterval", event.target.value)
           }
+          required
         />
 
         <Select
@@ -41,6 +43,7 @@ function ScheduleCard({
           options={FREQUENCY_UNITS}
           value={frequencyUnit}
           onChange={(event) => onChange("frequencyUnit", event.target.value)}
+          required
         />
       </div>
 

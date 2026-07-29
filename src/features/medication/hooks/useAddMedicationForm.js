@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   frequencyUnit: "DAYS",
   startDate: new Date().toISOString().split("T")[0],
   endDate: "",
-  reminderEnabled: false,
+  reminderEnabled: true,
 };
 
 export function useAddMedicationForm() {

@@ -2,21 +2,40 @@
 @use "../../../../styles/abstracts/mixins" as m;
 
 .page {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  min-height: 100vh;
+  background-color: v.$color-surface;
+  padding-bottom: v.space(48);
 }
 
-.backBtn {
-  @include m.button-reset;
-  font-size: 24px;
-  color: v.$color-primary;
-  margin-bottom: v.space(16);
-  cursor: pointer;
+.header {
+  @include m.flex-center;
+  gap: v.space(16);
+  justify-content: flex-start;
+  height: 59px;
+  padding: 0 v.space(24);
+  background-color: v.$color-pink-50;
+  box-shadow: v.$shadow-sm;
+}
 
-  &:hover {
-    color: v.$color-primary-hover;
-  }
+.backButton {
+  @include m.button-reset;
+  @include m.flex-center;
+  color: v.$color-text;
+  width: 2rem;
+  height: 2rem;
+  font-weight: v.$font-weight-bold;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-bold;
+  color: v.$color-text;
+}
+
+.content {
+  padding: v.space(24);
 }
 
 .deleteModal {

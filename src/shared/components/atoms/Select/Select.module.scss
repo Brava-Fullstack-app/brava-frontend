@@ -1,5 +1,5 @@
-@use '../../../../styles/abstracts/variables' as v;
-@use '../../../../styles/abstracts/mixins' as m;
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
 
 .field {
   display: flex;
@@ -9,7 +9,7 @@
 
 .label {
   font-size: v.$font-size-sm;
-  font-weight: v.$font-weight-semibold;
+  font-weight: v.$font-weight-medium;
   color: v.$color-text;
 }
 
@@ -40,14 +40,18 @@
   padding: v.space(16);
   padding-right: v.space(40);
   font-size: v.$font-size-base;
-  color: v.$color-text;
+  color: v.$color-neutral-400;
 
-  &:invalid {
-    color: v.$color-neutral-400;
+  &:has(option:checked:not([value=""])) {
+    color: v.$color-text;
   }
 
   &:focus {
     outline: none;
+  }
+
+  option:not(:disabled) {
+    color: v.$color-text;
   }
 }
 
@@ -62,7 +66,7 @@
 
 .helperText {
   font-size: v.$font-size-xs;
-  color: v.$color-text-muted;
+  color: v.$color-neutral-600;
 }
 
 .errorText {

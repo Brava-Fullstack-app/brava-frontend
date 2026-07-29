@@ -18,7 +18,7 @@ function DosageCard({ quantity, doseAmount, doseUnit, onChange }) {
       <div className={styles.row}>
         <Input
           id="doseAmount"
-          label="Dosis"
+          label="Dosis (opcional)"
           type="number"
           placeholder="Ej. 20"
           value={doseAmount}
@@ -27,7 +27,7 @@ function DosageCard({ quantity, doseAmount, doseUnit, onChange }) {
 
         <Select
           id="doseUnit"
-          label="Unidad"
+          label="Unidad (opcional)"
           placeholder="mg"
           options={DOSE_UNITS}
           value={doseUnit}

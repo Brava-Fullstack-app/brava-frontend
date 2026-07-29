@@ -10,7 +10,7 @@ function Select({ id, label, required, placeholder, options, error, helperText, 
       )}
 
       <div className={`${styles.wrapper} ${error ? styles.wrapperError : ''}`}>
-        <select id={id} className={styles.select} defaultValue="" {...rest}>
+        <select id={id} className={styles.select} required={required} {...rest}>
           <option value="" disabled hidden>
             {placeholder}
           </option>

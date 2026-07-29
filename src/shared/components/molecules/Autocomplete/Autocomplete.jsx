@@ -47,6 +47,7 @@ function Autocomplete({ id, label, required, placeholder, options, value, onChan
           value={value ?? ''}
           onFocus={() => setIsOpen(true)}
           onChange={handleInputChange}
+          required={required}
         />
       </div>
 

@@ -3,11 +3,22 @@
 .fabWrapper {
   position: fixed;
   bottom: v.space(24);
-  right: v.space(24);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 v.space(16);
+
+  button {
+    width: 100%;
+  }
 
   @media (min-width: v.$breakpoint-tablet) {
-    bottom: v.space(32);
-    right: v.space(32);
+    width: auto;
+    padding: 0;
+
+    button {
+      width: auto;
+    }
   }
 }
 
@@ -48,7 +59,11 @@
 .home__wrapper2{
   display: flex;
   flex-direction: column;
-  gap:2rem;
   width: 100%;
-  margin-top: 3rem;
+  gap:1.5rem;
+
+  @media (min-width: v.$breakpoint-tablet) {
+    gap:2rem;
+    margin-top: 3rem;
+  }
 }

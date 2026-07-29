@@ -34,18 +34,18 @@ const router = createBrowserRouter([
             element: <HomePage />,
           },
           {
-            path: "/medications/register",
-            element: <RegisterMedication />,
-          },
-          {
             path: "/profile",
             element: <ProfilePage />,
           },
-          {
-            path: "/calendar/:date",
-            element: <DayDetailPage />,
-          },
         ],
+      },
+      {
+        path: "/calendar/:date",
+        element: <DayDetailPage />,
+      },
+      {
+        path: "/medications/register",
+        element: <RegisterMedication />,
       },
     ],
   },

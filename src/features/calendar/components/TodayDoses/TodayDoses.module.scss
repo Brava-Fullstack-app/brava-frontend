@@ -112,11 +112,15 @@
 .statusPending {
   background-color: v.$color-orange-50;
   color: v.$color-orange-600;
+  border-radius: 0.5rem;
+border: 1px solid var(--Border-border-color-warning-default, #FFAD66);
 }
 
 .statusCompleted {
   background-color: v.$color-green-50;
   color: v.$color-green-600;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Border-border-color-success-default, #7adc9e);
 }
 
 .cardWrapper {

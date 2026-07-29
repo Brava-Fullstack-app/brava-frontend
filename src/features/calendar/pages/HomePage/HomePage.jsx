@@ -101,7 +101,7 @@ useEffect(() => {
       <div className={styles.fabWrapper}>
         <Button
           variant="primary"
-          icon="bi-plus-lg"
+          icon="bi-plus-circle"
           onClick={() => navigate("/medications/register")}
         >
           Registrar medicamento

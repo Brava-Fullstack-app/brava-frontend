@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNotifications } from "../../context/useNotifications";
 import { medicationApi } from "../../../medication/services/medicationApi";
 import Button from "../../../../shared/components/atoms/Button/Button";
-import Input from "../../../../shared/components/atoms/Input/Input";
+import TimePicker from "../../../../shared/components/atoms/TimePicker/TimePicker";
 import styles from "./NotificationToast.module.scss";
 
-function NotificationToast({ notification}) {
+function NotificationToast({ notification }) {
   const { removeNotification } = useNotifications();
   const [time, setTime] = useState(() => {
     const now = new Date();
@@ -13,28 +13,36 @@ function NotificationToast({ notification}) {
   });
 
   const handleConfirm = async () => {
-  try {
-    const [h, m] = time.split(":").map(Number);
-    const now = new Date();
-    const localStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}T${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:00`;
-    await medicationApi.registerDose(notification.medicationId, {
-      takenAt: localStr,
-    });
-    removeNotification(notification.id);
-    window.dispatchEvent(new CustomEvent("dose-registered"));
-  } catch (err) {
-    console.error("Error registering dose:", err);
-  }
-};
+    try {
+      const [h, m] = time.split(":").map(Number);
+      const now = new Date();
+      const localStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}T${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:00`;
+      await medicationApi.registerDose(notification.medicationId, {
+        takenAt: localStr,
+      });
+      removeNotification(notification.id);
+      window.dispatchEvent(new CustomEvent("dose-registered"));
+    } catch (err) {
+      console.error("Error registering dose:", err);
+    }
+  };
 
   return (
-    <div className={`${styles.toast} ${notification.type === "now" ? styles.toastNow : styles.toastReminder}`}>
+    <div
+      className={`${styles.toast} ${notification.type === "now" ? styles.toastNow : styles.toastReminder}`}
+    >
       <div className={styles.header}>
         <i className="bi bi-bell-fill"></i>
         <span className={styles.typeLabel}>
           {notification.type === "now" ? "Es hora de tomar" : "En 5 minutos"}
         </span>
-        <button className={styles.closeBtn} onClick={() => removeNotification(notification.id)}>
+        <button
+          className={styles.closeBtn}
+          onClick={() => {
+            removeNotification(notification.id);
+            window.dispatchEvent(new CustomEvent("dose-registered"));
+          }}
+        >
           <i className="bi bi-x-lg"></i>
         </button>
       </div>
@@ -50,12 +58,7 @@ function NotificationToast({ notification}) {
 
       {notification.type === "now" && (
         <div className={styles.actions}>
-          <Input
-            label="Hora"
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
+          <TimePicker value={time} onChange={(e) => setTime(e.target.value)} />
           <Button variant="primary" fullWidth onClick={handleConfirm}>
             Marcar como tomado
           </Button>

@@ -13,6 +13,26 @@
   border: 1px solid v.$color-neutral-300;
   background-color: v.$color-white;
   box-shadow: v.$shadow-md;
+@media (min-width: v.$breakpoint-tablet) {
+  height:490px;
+}
+
+}
+
+:global(.rdp-root) {
+  @media (min-width: v.$breakpoint-tablet) {
+    --rdp-day-width: 52px;
+    --rdp-day-height: 52px;
+    --rdp-day_button-width: 50px;
+    --rdp-day_button-height: 50px;
+  }
+
+  @media (min-width: v.$breakpoint-desktop) {
+    --rdp-day-width: 60px;
+    --rdp-day-height: 60px;
+    --rdp-day_button-width: 58px;
+    --rdp-day_button-height: 58px;
+  }
 }
 
 .hasDose :global(.rdp-day_button) {
