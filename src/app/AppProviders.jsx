@@ -1,11 +1,16 @@
-import { RouterProvider } from 'react-router-dom';
-import { AuthProvider } from '../store/AuthProvider';
-import router from './router';
+import { AuthProvider } from "../store/AuthProvider";
+import { NotificationProvider } from "../features/notifications/context/NotificationProvider";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
-export default function AppProviders() {
+function AppProviders() {
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <NotificationProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </NotificationProvider>
   );
 }
+
+export default AppProviders;

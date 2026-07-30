@@ -1,0 +1,75 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.field {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.space(8);
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: v.space(16);
+  cursor: pointer;
+  min-height: 48px;
+
+  &:hover {
+    border-color: v.$color-primary;
+  }
+}
+
+.triggerOpen {
+  border-color: v.$color-primary;
+}
+
+.value {
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+}
+
+.chevron {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-sm;
+  transition: transform 0.2s;
+
+  .triggerOpen & {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: v.$color-white;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  box-shadow: v.$shadow-md;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: v.space(4);
+}
+
+.option {
+  @include m.button-reset;
+  width: 100%;
+  text-align: left;
+  padding: v.space(12) v.space(16);
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+
+  &:hover {
+    background-color: v.$color-surface;
+  }
+}
+
+.optionSelected {
+  font-weight: v.$font-weight-semibold;
+  background-color: v.$color-pink-50;
+}

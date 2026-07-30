@@ -1,0 +1,180 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(12);
+  width: 100%;
+}
+
+.title {
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-pink-900;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.empty {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-sm;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: v.space(12);
+  width: 100%;
+}
+
+.item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  padding: 20px 20px 20px 32px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: v.space(12);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  flex-direction: column;
+
+  &:hover {
+    background-color: v.$color-neutral-100;
+  }
+
+  border-radius: v.$radius-md;
+  border: 1px solid var(--Checkbox-Unchecked-color-corner-unchecked, #7a6670);
+  background: var(--Background-background-color-primary-default, #fff);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.bar {
+  position: absolute;
+  left: 17px;
+  top: 22.25px;
+  width: 6px;
+  height: 40px;
+  border-radius: 9999px;
+}
+
+.completed {
+  opacity: 0.6;
+  cursor: default;
+
+  &:hover {
+    background-color: v.$color-neutral-50;
+  }
+}
+
+.info {
+  @include m.flex-column;
+  flex: 1;
+  margin: 0 v.space(12);
+  gap: v.space(2);
+}
+
+.name {
+  font-weight: v.$font-weight-medium;
+  color: v.$color-text;
+  font-size: v.$font-size-base;
+}
+
+.time {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.doseInfo {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.status {
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  padding: v.space(4) v.space(8);
+  border-radius: v.$radius-full;
+  flex-shrink: 0;
+}
+
+.statusPending {
+  background-color: v.$color-orange-50;
+  color: v.$color-orange-600;
+  border-radius: 0.5rem;
+border: 1px solid var(--Border-border-color-warning-default, #FFAD66);
+}
+
+.statusCompleted {
+  background-color: v.$color-green-50;
+  color: v.$color-green-600;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Border-border-color-success-default, #7adc9e);
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  gap: v.space(4);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: v.space(8);
+}
+
+.actionBtn {
+  @include m.button-reset;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  color: v.$color-neutral-400;
+  cursor: pointer;
+
+  :global(.bi-pen-fill),
+  :global(.bi-trash-fill) {
+    display: none;
+  }
+
+  &:hover {
+    :global(.bi-pen),
+    :global(.bi-trash) {
+      display: none;
+    }
+
+    :global(.bi-pen-fill),
+    :global(.bi-trash-fill) {
+      display: inline;
+    }
+
+    color: v.$color-primary;
+  }
+}

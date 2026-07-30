@@ -13,7 +13,7 @@
 .card {
   width: 100%;
   max-width: 25rem;
-  padding: v.space(40);
+  padding: v.space(24);
   background-color: v.$color-background;
   border-radius: v.$radius-lg;
   box-shadow: v.$shadow-md;
@@ -48,6 +48,10 @@
   line-height: 1.5;
 }
 
-.button {
+.children {
+  width: 100%;
+  @include m.flex-column;
+  align-items: center;
+  gap: v.space(12);
   margin-top: v.space(8);
 }

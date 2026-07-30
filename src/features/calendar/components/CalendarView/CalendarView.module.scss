@@ -1,0 +1,70 @@
+@use "../../../../styles/abstracts/variables" as v;
+
+.calendarWrapper {
+  display: flex;
+  width: 100%;
+  height: 394px;
+  padding: v.space(24) v.space(16);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-radius: v.$radius-md;
+  border: 1px solid v.$color-neutral-300;
+  background-color: v.$color-white;
+  box-shadow: v.$shadow-md;
+@media (min-width: v.$breakpoint-tablet) {
+  height:490px;
+}
+
+}
+
+:global(.rdp-root) {
+  @media (min-width: v.$breakpoint-tablet) {
+    --rdp-day-width: 52px;
+    --rdp-day-height: 52px;
+    --rdp-day_button-width: 50px;
+    --rdp-day_button-height: 50px;
+  }
+
+  @media (min-width: v.$breakpoint-desktop) {
+    --rdp-day-width: 60px;
+    --rdp-day-height: 60px;
+    --rdp-day_button-width: 58px;
+    --rdp-day_button-height: 58px;
+  }
+}
+
+.hasDose :global(.rdp-day_button) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.15rem;
+    border-radius: 50%;
+    background-color: v.$color-primary;
+  }
+}
+
+.allCompleted :global(.rdp-day_button)::after {
+  background-color: v.$color-green-500;
+}
+
+.today :global(.rdp-day_button) {
+  border: 2px dashed v.$color-primary;
+  color: v.$color-pink-900;
+  background-color: transparent;
+}
+
+.outside :global(.rdp-day_button) {
+  color: v.$color-neutral-300;
+}
+
+:global(.rdp-month_caption) {
+  color: v.$color-pink-900;
+}

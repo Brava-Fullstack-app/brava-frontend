@@ -1,0 +1,63 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.card {
+  @include m.flex-between;
+  background: v.$color-white;
+  border-radius: v.$radius-md;
+  padding: v.space(16);
+
+  border: 1px solid var(--Tag-Type-Fill-color-label-fill, #d71672);
+  background: var(
+    --Background-background-color-accent-default,
+    rgba(251, 232, 241, 0.5)
+  );
+}
+
+.icon {
+  @include m.flex-center;
+  width: 40px;
+  height: 40px;
+  background-color: v.$color-white;
+  border-radius: v.$radius-md;
+  font-size: v.$font-size-xl;
+  color: v.$color-primary;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.info {
+  @include m.flex-column;
+  flex: 1;
+  margin: 0 v.space(12);
+  gap: v.space(2);
+}
+
+.name {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+}
+
+.timeLeft {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.arrowButton {
+  @include m.button-reset;
+  font-size: 24px;
+  color: v.$color-primary;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    color: v.$color-primary-hover;
+  }
+}
+
+.emptyMessage {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-sm;
+  text-align: flex-start;
+}

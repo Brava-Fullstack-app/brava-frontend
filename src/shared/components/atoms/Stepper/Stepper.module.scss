@@ -1,0 +1,53 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+}
+
+.label {
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-medium;
+  color: v.$color-text;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.button {
+  @include m.button-reset;
+  @include m.flex-center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid v.$color-primary;
+  color: v.$color-primary;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.button:first-child {
+  border-radius: v.$radius-sm 0 0 v.$radius-sm;
+}
+
+.button:last-child {
+  border-radius: 0 v.$radius-sm v.$radius-sm 0;
+}
+
+.value {
+  min-width: 48px;
+  height: 40px;
+  @include m.flex-center;
+  border-top: 1px solid v.$color-primary;
+  border-bottom: 1px solid v.$color-primary;
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+}

@@ -1,0 +1,92 @@
+@use '../../../../styles/abstracts/variables' as v;
+@use '../../../../styles/abstracts/mixins' as m;
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+}
+
+.label {
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-medium;
+  color: v.$color-text;
+}
+
+.required {
+  color: v.$color-primary;
+}
+
+.wrapper {
+  @include m.flex-center;
+  gap: v.space(8);
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: 0 v.space(16);
+
+  &:focus-within {
+    border-color: v.$color-primary;
+  }
+}
+
+.wrapperError {
+  border-color: v.$color-error;
+}
+
+.icon {
+  color: v.$color-text-muted;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: v.space(16) 0;
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+
+  &::placeholder {
+    color: v.$color-neutral-400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: v.$color-white;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  box-shadow: v.$shadow-md;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: v.space(4);
+}
+
+.option {
+  @include m.button-reset;
+  width: 100%;
+  text-align: left;
+  padding: v.space(12) v.space(16);
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+
+  &:hover {
+    background-color: v.$color-surface;
+  }
+}
+
+.errorText {
+  font-size: v.$font-size-xs;
+  color: v.$color-error;
+}

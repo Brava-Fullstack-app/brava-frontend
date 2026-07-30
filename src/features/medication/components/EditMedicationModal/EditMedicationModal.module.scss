@@ -1,0 +1,39 @@
+@use "../../../../styles/abstracts/variables" as v;
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(16);
+  padding: v.space(12);
+}
+
+.title {
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-pink-500;
+  text-align: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  gap: v.space(12);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+  margin-top: v.space(8);
+}

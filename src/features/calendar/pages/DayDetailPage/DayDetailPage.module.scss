@@ -1,0 +1,71 @@
+@use "../../../../styles/abstracts/variables" as v;
+@use "../../../../styles/abstracts/mixins" as m;
+
+.page {
+  min-height: 100vh;
+  background-color: v.$color-surface;
+  padding-bottom: v.space(48);
+}
+
+.header {
+  @include m.flex-center;
+  gap: v.space(16);
+  justify-content: flex-start;
+  height: 59px;
+  padding: 0 v.space(24);
+  background-color: v.$color-pink-50;
+  box-shadow: v.$shadow-sm;
+}
+
+.backButton {
+  @include m.button-reset;
+  @include m.flex-center;
+  color: v.$color-text;
+  width: 2rem;
+  height: 2rem;
+  font-weight: v.$font-weight-bold;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-bold;
+  color: v.$color-text;
+}
+
+.content {
+  padding: v.space(24);
+}
+
+.deleteModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.space(16);
+  text-align: center;
+  padding: v.space(24);
+}
+
+.deleteModal i {
+  font-size: 48px;
+  color: v.$color-orange-500;
+}
+
+.deleteTitle {
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-semibold;
+  color: v.$color-text;
+}
+
+.deleteText {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+}
+
+.deleteActions {
+  display: flex;
+  flex-direction: column;
+  gap: v.space(8);
+  width: 100%;
+}

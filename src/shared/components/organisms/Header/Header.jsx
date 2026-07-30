@@ -5,6 +5,8 @@ function Header({
   showHome = false,
   onProfileClick,
   onHomeClick,
+  isHomeActive = false,
+  isProfileActive = false,
 }) {
   return (
     <header className={styles.header}>
@@ -18,7 +20,7 @@ function Header({
         {showProfile && (
           <button
             type="button"
-            className={styles.profileButton}
+            className={`${styles.profileButton} ${isProfileActive ? styles.active : ""}`}
             onClick={onProfileClick}
             aria-label="Open profile menu"
           >
@@ -30,7 +32,7 @@ function Header({
         {showHome && (
           <button
             type="button"
-            className={styles.iconButton}
+            className={`${styles.iconButton} ${isHomeActive ? styles.active : ""}`}
             onClick={onHomeClick}
             aria-label="Go to home"
           >
