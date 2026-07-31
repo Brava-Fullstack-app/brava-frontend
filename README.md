@@ -157,6 +157,6 @@ npm run test
 
 ## 📄 Licencia
 
-Reconocimiento - Compartir Igual (CC BY-SA)
+Todos los derechos reservados.
 
 Autora: Nayeli Córdova Mendoza
